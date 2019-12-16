@@ -11,7 +11,11 @@
     :license: BSD, see LICENSE for more details.
 '''
 from functools import wraps
-from urlparse import urljoin
+try:
+	from urlparse import urljoin #py 2
+except ImportError:
+	from urllib.parse import urljoin #py 3
+	
 from flask import request, session, redirect, current_app
 from werkzeug import parse_options_header
 from rauth.service import OAuth2Service, OAuth1Service, OflyService, Response, parse_utf8_qsl
